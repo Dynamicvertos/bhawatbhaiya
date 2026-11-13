@@ -75,6 +75,15 @@ async def get_service_worker():
     return response
 
 
+@app.get("/.well-known/assetlinks.json")
+async def get_assetlinks():
+    """Serves Google Digital Asset Links for Trusted Web Activity (TWA) verification."""
+    assetlinks_path = config.BASE_DIR / ".well-known" / "assetlinks.json"
+    if not assetlinks_path.exists():
+        raise HTTPException(status_code=404, detail="Asset links not found")
+    return FileResponse(assetlinks_path, media_type="application/json")
+
+
 @app.get("/favicon.ico")
 async def get_favicon():
     """Serves the favicon icon."""
