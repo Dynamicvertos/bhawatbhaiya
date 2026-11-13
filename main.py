@@ -85,22 +85,30 @@ async def get_favicon():
 
 
 @app.get("/api/wifi-qr")
-async def get_wifi_qr():
-    """Generates a dynamic QR code for Android phone camera to easily open the web app over local Wi-Fi."""
+async def get_wifi_qr(request: Request):
+    """Generates a dynamic QR code for Android phone camera to easily open the web app over local Wi-Fi or Cloud."""
     import socket, qrcode, io
     from fastapi.responses import Response
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        s.connect(('8.8.8.8', 80))
-        local_ip = s.getsockname()[0]
-    except Exception:
-        local_ip = '127.0.0.1'
-    finally:
-        s.close()
+    host_header = request.headers.get("x-forwarded-host") or request.headers.get("host") or ""
+    proto = request.headers.get("x-forwarded-proto") or ("https" if "render.com" in host_header else "http")
 
-    mobile_url = f"http://{local_ip}:{config.PORT}"
-    qr_img = qrcode.make(mobile_url)
+    if "render.com" in host_header or "bhawatbhaiya" in host_header:
+        target_url = f"{proto}://{host_header}"
+    elif config.BASE_URL and "render.com" in config.BASE_URL:
+        target_url = config.BASE_URL
+    else:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        try:
+            s.connect(('8.8.8.8', 80))
+            local_ip = s.getsockname()[0]
+        except Exception:
+            local_ip = '127.0.0.1'
+        finally:
+            s.close()
+        target_url = f"http://{local_ip}:{config.PORT}"
+
+    qr_img = qrcode.make(target_url)
     buf = io.BytesIO()
     qr_img.save(buf, format="PNG")
     return Response(content=buf.getvalue(), media_type="image/png")

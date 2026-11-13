@@ -16,7 +16,7 @@ SIGNATURE_SECRET = os.getenv("SIGNATURE_SECRET", "ncb-forensics-tamper-evident-s
 # Server Settings
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "8000"))
-BASE_URL = os.getenv("BASE_URL", f"http://localhost:{PORT}")
+BASE_URL = os.getenv("BASE_URL", os.getenv("RENDER_EXTERNAL_URL", "https://bhawatbhaiya.onrender.com"))
 
 # Local Directories
 DATA_DIR = BASE_DIR / "data"
