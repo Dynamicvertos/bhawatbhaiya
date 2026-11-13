@@ -1,0 +1,65 @@
+{
+  "name": "NCB-SPECTRA Field Drug Forensics",
+  "short_name": "NCB-SPECTRA",
+  "description": "Tactical Field Drug Testing & Spectrophotometric Colorimetry Companion for Narcotics Control Bureau officers.",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080D1A",
+  "theme_color": "#080D1A",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "government",
+    "productivity",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "/static/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Optical Scan",
+      "short_name": "Scan",
+      "description": "Launch camera colorimetry chamber",
+      "url": "/#tab-scan",
+      "icons": [
+        {
+          "src": "/static/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Seizure Logs",
+      "short_name": "Logs",
+      "description": "Open NDPS seizure audit records",
+      "url": "/#tab-logs",
+      "icons": [
+        {
+          "src": "/static/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment & Keystores
+.env
+*.keystore
+
+# Build artifacts & packages
+*.apk
+*.aab
+*.idsig
+tools/
+NCBSpectra/
+android_project/
+
+# Local databases & uploads
+*.db
+*.sqlite
+data/*.db
+data/uploads/*
+data/certificates/*
+!data/demo_samples/
+
+# OS files
+.DS_Store
+Thumbs.db
